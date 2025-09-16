@@ -1,0 +1,250 @@
+basePath: /
+definitions:
+  models.APIResponse-any:
+    properties:
+      data: {}
+      error:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.APIResponse-models_LoginSuccessResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.LoginSuccessResponse'
+      error:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.APIResponse-models_User:
+    properties:
+      data:
+        $ref: '#/definitions/models.User'
+      error:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.APIResponse-models_UserListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.UserListResponse'
+      error:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.LoginSuccessResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  models.RequestOTPPayload:
+    properties:
+      phone_number:
+        type: string
+    required:
+    - phone_number
+    type: object
+  models.User:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      phone_number:
+        type: string
+    type: object
+  models.UserListResponse:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      total:
+        type: integer
+      users:
+        items:
+          $ref: '#/definitions/models.User'
+        type: array
+    type: object
+  models.VerifyOTPPayload:
+    properties:
+      otp:
+        type: string
+      phone_number:
+        type: string
+    required:
+    - otp
+    - phone_number
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: A Go backend service for OTP login and registration.
+  title: OTP-Based Login API
+  version: "1.0"
+paths:
+  /auth/request-otp:
+    post:
+      consumes:
+      - application/json
+      description: Sends a phone number to generate an OTP for login or registration.
+      parameters:
+      - description: Phone Number
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestOTPPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+      summary: Request an OTP
+      tags:
+      - Authentication
+  /auth/verify-otp:
+    post:
+      consumes:
+      - application/json
+      description: Verifies OTP. If valid, logs in an existing user or registers a
+        new one, returning a JWT.
+      parameters:
+      - description: Phone Number and OTP
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.VerifyOTPPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.APIResponse-models_LoginSuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+      summary: Verify OTP & Login/Register
+      tags:
+      - Authentication
+  /users:
+    get:
+      description: Retrieves a paginated list of all registered users. Supports searching
+        by phone number.
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Users per page
+        in: query
+        name: limit
+        type: integer
+      - description: Search by phone number
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.APIResponse-models_UserListResponse'
+      security:
+      - BearerAuth: []
+      summary: List all users
+      tags:
+      - Users
+  /users/{id}:
+    get:
+      description: Retrieves the details of a single user by their unique ID.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.APIResponse-models_User'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Get a single user by ID
+      tags:
+      - Users
+  /users/phone/{phone}:
+    get:
+      description: Retrieves the details of a single user by their phone number.
+      parameters:
+      - description: Phone Number
+        in: path
+        name: phone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.APIResponse-models_User'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.APIResponse-any'
+      security:
+      - BearerAuth: []
+      summary: Get a single user by phone number
+      tags:
+      - Users
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
