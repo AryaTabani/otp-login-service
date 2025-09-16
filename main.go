@@ -14,9 +14,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title           OTP-Based Login API
+// @title           OTP-Login-Service
 // @version         1.0
-// @description     A Go backend service for OTP login and registration.
+// @description     Go backend service for OTP login and registration.
 // @host            localhost:8080
 // @BasePath        /
 // @securityDefinitions.apikey BearerAuth
