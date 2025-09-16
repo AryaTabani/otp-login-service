@@ -90,8 +90,8 @@ definitions:
 host: localhost:8080
 info:
   contact: {}
-  description: A Go backend service for OTP login and registration.
-  title: OTP-Based Login API
+  description: Go backend service for OTP login and registration.
+  title: OTP-Login-Service
   version: "1.0"
 paths:
   /auth/request-otp:

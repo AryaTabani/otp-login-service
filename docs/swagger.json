@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "A Go backend service for OTP login and registration.",
-        "title": "OTP-Based Login API",
+        "description": "Go backend service for OTP login and registration.",
+        "title": "OTP-Login-Service",
         "contact": {},
         "version": "1.0"
     },
