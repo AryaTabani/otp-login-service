@@ -50,17 +50,7 @@ You can run the application either locally with Go or using Docker.
     go mod tidy
     ```
 
-3.  **Set Environment Variables** (Optional):
-    The application uses a default JWT secret key for development. You can set your own for production.
-    ```powershell
-    # In PowerShell
-    $env:JWT_SECRET_KEY="your-super-secret-key"
-    
-    # In Bash (Linux/macOS)
-    export JWT_SECRET_KEY="your-super-secret-key"
-    ```
-
-4.  **Run the application**:
+3.  **Run the application**:
     ```bash
     go run main.go
     ```
