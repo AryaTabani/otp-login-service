@@ -41,7 +41,7 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone otp-login-service
+    git clone https://github.com/AryaTabani/otp-login-service.git
     cd otp-login-service
     ```
 
@@ -74,14 +74,14 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone otp-login-service
+    git clone https://github.com/AryaTabani/otp-login-service.git
     cd otp-login-service
     ```
 
 2.  **Build and run the container**:
     From the project's root directory, run:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
     This command will build the Go application image, start the service, and make it available at `http://localhost:8080`.
 
