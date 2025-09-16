@@ -35,7 +35,7 @@ You can run the application either locally with Go or using Docker.
 ### How to Run Locally
 
 #### Prerequisites
-* Go (version 1.21 or later) installed.
+* Go (version 1.25.1 or later) installed.
 * A C compiler (like GCC/MinGW on Windows) for the `go-sqlite3` driver.
 
 #### Instructions
