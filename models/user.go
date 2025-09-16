@@ -1,3 +1,5 @@
+// models/user.go
+
 package models
 
 import "time"
@@ -8,11 +10,22 @@ type User struct {
 	CreatedAt   time.Time `json:"created_at"`
 }
 
-type RequestOTP struct {
+type RequestOTPPayload struct {
 	PhoneNumber string `json:"phone_number" binding:"required"`
 }
 
-type VerifyOTP struct {
+type VerifyOTPPayload struct {
 	PhoneNumber string `json:"phone_number" binding:"required"`
 	OTP         string `json:"otp" binding:"required"`
+}
+
+type LoginSuccessResponse struct {
+	Token string `json:"token"`
+}
+
+type UserListResponse struct {
+	Users []*User `json:"users"`
+	Total int     `json:"total"`
+	Page  int     `json:"page"`
+	Limit int     `json:"limit"`
 }
