@@ -158,7 +158,7 @@ curl -X GET "http://localhost:8080/users?page=1&limit=5" \
         "users": [
             {
                 "id": 1,
-                "phone_number": "+15551234567",
+                "phone_number": "09140000",
                 "created_at": "2025-09-15T19:15:36.123Z"
             }
         ]
