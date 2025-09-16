@@ -41,7 +41,7 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone otp-login-service
+    git clone https://github.com/AryaTabani/otp-login-service.git
     cd otp-login-service
     ```
 
@@ -50,17 +50,7 @@ You can run the application either locally with Go or using Docker.
     go mod tidy
     ```
 
-3.  **Set Environment Variables** (Optional):
-    The application uses a default JWT secret key for development. You can set your own for production.
-    ```powershell
-    # In PowerShell
-    $env:JWT_SECRET_KEY="your-super-secret-key"
-    
-    # In Bash (Linux/macOS)
-    export JWT_SECRET_KEY="your-super-secret-key"
-    ```
-
-4.  **Run the application**:
+3.  **Run the application**:
     ```bash
     go run main.go
     ```
@@ -74,14 +64,14 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone otp-login-service
+    git clone https://github.com/AryaTabani/otp-login-service.git
     cd otp-login-service
     ```
 
 2.  **Build and run the container**:
     From the project's root directory, run:
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
     This command will build the Go application image, start the service, and make it available at `http://localhost:8080`.
 
