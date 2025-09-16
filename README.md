@@ -41,8 +41,8 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone otp-login-service
+    cd otp-login-service
     ```
 
 2.  **Install dependencies**:
@@ -74,8 +74,8 @@ You can run the application either locally with Go or using Docker.
 #### Instructions
 1.  **Clone the repository**:
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone otp-login-service
+    cd otp-login-service
     ```
 
 2.  **Build and run the container**:
