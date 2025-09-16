@@ -3,8 +3,8 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -o main .
-
+RUN apk add --no-cache gcc musl-dev && \
+    CGO_ENABLED=1 GOOS=linux go build -ldflags="-w -s" -a -o main .
 FROM alpine:latest
 WORKDIR /root/
 COPY --from=builder /app/main .
