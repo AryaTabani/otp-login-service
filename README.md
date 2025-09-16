@@ -107,7 +107,7 @@ Here are some examples of how to interact with the API.
 curl -X POST http://localhost:8080/auth/request-otp \
 -H "Content-Type: application/json" \
 -d '{
-    "phone_number": "+15551234567"
+    "phone_number": "09140000"
 }'
 ```
 **Success Response:** (The OTP will be printed in your server console)
@@ -126,7 +126,7 @@ _Check your application console for the generated OTP first._
 curl -X POST http://localhost:8080/auth/verify-otp \
 -H "Content-Type: application/json" \
 -d '{
-    "phone_number": "+15551234567",
+    "phone_number": "09140000",
     "otp": "123456"
 }'
 ```
